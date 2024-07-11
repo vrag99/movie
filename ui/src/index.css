@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "tanker";
+    src: url("./assets/font/Tanker-Regular.ttf") format("truetype");
+  }
+  :root {
+    --background: 11 3% 95%;
+    --foreground: 11 3% 0%;
+    --card: 11 3% 90%;
+    --card-foreground: 11 3% 10%;
+    --popover: 11 3% 95%;
+    --popover-foreground: 11 95% 0%;
+    --primary: 11 98.2% 56.5%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 11 10% 70%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: -27 10% 85%;
+    --muted-foreground: 11 3% 35%;
+    --accent: -27 10% 80%;
+    --accent-foreground: 11 3% 10%;
+    --destructive: 0 50% 30%;
+    --destructive-foreground: 11 3% 90%;
+    --border: 11 20% 50%;
+    --input: 11 20% 18%;
+    --ring: 11 98.2% 56.5%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 11 3% 3%;
+    --foreground: 0 0 95%;
+    --card: 11 3% 0%;
+    --card-foreground: 11 3% 90%;
+    --popover: 11 10% 5%;
+    --popover-foreground: 11 3% 90%;
+    --primary: 11 98.2% 56.5%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 11 10% 10%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: -27 10% 15%;
+    --muted-foreground: 11 3% 60%;
+    --accent: -27 10% 15%;
+    --accent-foreground: 11 3% 90%;
+    --destructive: 0 50% 30%;
+    --destructive-foreground: 11 3% 90%;
+    --border: 11 20% 18%;
+    --input: 11 20% 18%;
+    --ring: 11 98.2% 56.5%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
