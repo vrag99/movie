@@ -5,6 +5,7 @@ import leadBg from "@/assets/lead-bg.jpg";
 
 export default function Home() {
   const navigate = useNavigate();
+
   return (
     <>
       {/* Hero */}
@@ -17,7 +18,7 @@ export default function Home() {
               <span className="text-primary font-semibold">MOVie!</span>
             </p>
             <Button
-              onClick={() => navigate("/onboard")}
+              onClick={() => navigate("/login")}
               className="mt-3"
               variant={"shine"}
               size={"lg"}

@@ -14,16 +14,23 @@ import { useToast } from "@/components/ui/use-toast";
 import Spinner from "@/components/ui/spinner";
 
 import { LOGIN_API } from "@/lib/endpoints";
-import { redirect, useNavigate } from "react-router-dom";
+import {useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useUserStore } from "@/hooks/useStore";
+import { useAccount, useConnect } from "wagmi";
+import metamask from "@/assets/metamask.svg";
 
 export default function LoginCard() {
   const [loginEmail, setLoginEmail] = useState("");
-  const [loginPassword, setLoginPassword] = useState("");
+  const [loginUsername, setLoginUsername] = useState("");
+
   const [loading, setLoading] = useState(false);
-  const { user, setUser } = useUserStore();
+
+  const { setUser } = useUserStore();
+
+  const { address } = useAccount();
+  const { connect, connectors } = useConnect();
 
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -36,11 +43,12 @@ export default function LoginCard() {
         LOGIN_API,
         {
           email: loginEmail,
-          password: loginPassword,
+          username: loginUsername,
+          walletAddress: address,
         },
         {
           withCredentials: true,
-        },
+        }
       )
       .then((res) => {
         if (res.status === 200) {
@@ -50,7 +58,7 @@ export default function LoginCard() {
             description: "Getting things ready for you!",
           });
           setUser(res.data.data);
-          navigate("/");
+          navigate("/videos");
         }
       })
       .catch((err) => {
@@ -67,16 +75,16 @@ export default function LoginCard() {
   };
   return (
     <>
-      <Card className="w-[360px] text-left">
+      <Card className="w-[360px] backdrop-blur-lg bg-background/20 border-primary/10">
         <CardHeader>
           <CardTitle>Login</CardTitle>
-          <CardDescription>Log in to the developer dashboard</CardDescription>
+          <CardDescription>to watch your favourite creators :)</CardDescription>
         </CardHeader>
 
         <form onSubmit={handleLogin}>
           <CardContent className="space-y-2">
             <div className="space-y-1">
-              <Label htmlFor="email">Wallet Address</Label>
+              <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -89,16 +97,36 @@ export default function LoginCard() {
               />
             </div>
             <div className="space-y-1">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="username">Username</Label>
               <Input
-                id="password"
-                type="password"
+                id="username"
+                type="username"
+                placeholder="Enter your username"
                 required
-                defaultValue={loginPassword}
                 onChange={(e) => {
-                  setLoginPassword(e.target.value);
+                  setLoginUsername(e.target.value);
                 }}
               />
+            </div>
+            <div className="flex flex-row items-end gap-2">
+              <div className="flex-1">
+                <Label htmlFor="walletAddress">Wallet Address</Label>
+                <Input
+                  id="walletAddress"
+                  type="text"
+
+                  placeholder="0xh1th3r3"
+                  required
+                  value={address}
+                />
+              </div>
+              <Button
+                onClick={() => connect({ connector: connectors[0] })}
+                size={"icon"}
+                variant={"outline"}
+              >
+                <img src={metamask} className="w-4 h-4" />
+              </Button>
             </div>
           </CardContent>
           <CardFooter className="flex flex-col">

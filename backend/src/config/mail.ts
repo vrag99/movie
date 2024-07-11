@@ -21,7 +21,7 @@ export function MAIL_BODY(otp: string) {
                   <tr>
                     <td style="padding: 40px 0px 0px;">
                       <div style="text-align: left;">
-                        <div style="padding-bottom: 20px;"><img src="https://raw.githubusercontent.com/utkarshdagoat/Mosaic-Protocol/32affc6a08ba67cc82c81239ae6ba34bf7577092/logo.svg" alt="Company" style="width: 56px;"></div>
+                        <div style="padding-bottom: 20px;"><img src="https://raw.githubusercontent.com/vrag99/movie/18ddf79819e2c495edca5ceb58cb3c1c020e1c60/ui/src/assets/logo.svg" alt="Company" style="width: 56px;"></div>
                       </div>
                       <div style="padding: 20px; background-color: rgb(255, 255, 255);">
                         <div style="color: rgb(0, 0, 0); text-align: left;">

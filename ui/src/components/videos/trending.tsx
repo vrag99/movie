@@ -1,4 +1,7 @@
 import { video } from "@/lib/types";
+import axios from "axios";
+import { useEffect } from "react";
+import { GET_VIDEOS_API } from "@/lib/endpoints";
 
 export default function Trending() {
   const sampleVideos: video[] = [
@@ -50,6 +53,23 @@ export default function Trending() {
       address: "0xDc76Cd25977E0a5Ae17155770273ad58648900D3",
     },
   ];
+
+  useEffect(() => {
+    const fetchVideos = () => {
+      axios
+        .get(GET_VIDEOS_API, {
+          withCredentials: true,
+
+        })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    };
+    fetchVideos();
+  });
   return (
     <div className="mt-4">
       <h1 className="text-xl font-bold">Trending Today</h1>
@@ -62,7 +82,9 @@ export default function Trending() {
               className="w-full h-40 object-cover rounded-md"
             />
             <h2 className="text-lg font-semibold mt-2">{video.title}</h2>
-            <p className="text-sm text-muted-foreground mt-1">{video.description}</p>
+            <p className="text-sm text-muted-foreground mt-1">
+              {video.description}
+            </p>
             <p className="mt-2 text-base text-primary"> {video.username}</p>
           </div>
         ))}

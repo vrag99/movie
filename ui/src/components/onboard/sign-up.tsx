@@ -18,8 +18,8 @@ import axios from "axios";
 import { SEND_OTP_API } from "@/lib/endpoints";
 import Spinner from "../ui/spinner";
 import { useUserStore } from "@/hooks/useStore";
-import { WalletMinimal } from "lucide-react";
 import { useAccount, useConnect } from "wagmi";
+import metamask from "@/assets/metamask.svg";
 
 interface SignUpProps {
   email: string;
@@ -30,7 +30,6 @@ interface SignUpProps {
 
 export default function SignUp(props: SignUpProps) {
   const { setUser } = useUserStore();
-  const [signupPassword, setSignupPassword] = useState("");
   const [username, setUsername] = useState("");
   const [loading, setIsLoading] = useState(false);
   const { nextStep } = useStepper();
@@ -46,7 +45,7 @@ export default function SignUp(props: SignUpProps) {
     axios
       .post(SIGNUP_API, {
         email: props.email,
-        password: signupPassword,
+        username: username,
       })
       .then((res) => {
         console.log(res);
@@ -120,7 +119,6 @@ export default function SignUp(props: SignUpProps) {
               <Input
                 id="email"
                 type="email"
-                className="py-6 px-4"
                 required
                 placeholder="Your email address"
                 defaultValue={props.email}
@@ -134,10 +132,8 @@ export default function SignUp(props: SignUpProps) {
               <Input
                 id="username"
                 type="username"
-                className="py-6 px-4"
                 required
                 placeholder="Tell me your username (must be unique)"
-                defaultValue={props.email}
                 onChange={(e) => {
                   setUsername(e.target.value);
                 }}
@@ -149,7 +145,6 @@ export default function SignUp(props: SignUpProps) {
                 <Input
                   id="walletAddress"
                   type="text"
-                  className="py-6 px-4"
                   placeholder="0xh1th3r3"
                   required
                   value={address}
@@ -159,9 +154,9 @@ export default function SignUp(props: SignUpProps) {
                 onClick={() => connect({ connector: connectors[0] })}
                 size={"icon"}
                 variant={"outline"}
-                className="p-6 text-white"
+                className=" text-white"
               >
-                <WalletMinimal className="h-6 w-6" />
+                <img src={metamask} className="w-4 h-4" />
               </Button>
             </div>
           </CardContent>
