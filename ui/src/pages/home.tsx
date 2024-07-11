@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import logo from "@/assets/logo.svg";
+import leadBg from "@/assets/lead-bg.jpg";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -11,8 +12,9 @@ export default function Home() {
         <div className="container">
           <div className="max-w-2xl text-center mx-auto">
             <img src={logo} className="w-48 mx-auto mb-0" alt="Logo" />
-            <p className="mt-3 text-xl text-muted-foreground">
-              Lights, Camera, MOVie!
+            <p className="mb-3 text-xl text-muted-foreground">
+              Lights, Camera,{" "}
+              <span className="text-primary font-semibold">MOVie!</span>
             </p>
             <Button
               onClick={() => navigate("/onboard")}
@@ -24,11 +26,7 @@ export default function Home() {
             </Button>
           </div>
           <div className="mt-10 relative max-w-5xl mx-auto">
-            <img
-              src="https://placehold.co/1024x480"
-              className="rounded-xl"
-              alt="Image Description"
-            />
+            <img src={leadBg} className="rounded-xl" alt="Image Description" />
             <div className="absolute bottom-12 -start-20 -z-[1] w-48 h-48 bg-gradient-to-b from-primary to-background to-[70%] p-px rounded-lg">
               <div className="w-48 h-48 rounded-lg bg-background/10" />
             </div>

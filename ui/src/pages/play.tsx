@@ -11,15 +11,13 @@ export default function Play() {
   const [searchParams] = useSearchParams();
   const videoId = searchParams.get("v");
 
-  const [title, setTitle] = useState(
-    "A quick brown fox jumps over the lazy dog."
-  );
+  const [title, setTitle] = useState("A charming scenic view");
   const [description, setDescription] = useState(
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    "The mountains are calling and I must go. - John Muir",
   );
   const [username, setUsername] = useState("cryptoGuru");
   const [address, setAddress] = useState(
-    "0x32Be343B94f860124dC4fEe278FDCBD38C102D88"
+    "0x32Be343B94f860124dC4fEe278FDCBD38C102D88",
   );
 
   const metadata = {
@@ -58,7 +56,7 @@ export default function Play() {
   ];
 
   return (
-    <div className="h-screen w-[72vw] mx-auto pt-4">
+    <div className="h-screen w-[72vw] mx-auto pt-4 text-left">
       <NavBar />
       <Player />
       <MetaData {...metadata} />

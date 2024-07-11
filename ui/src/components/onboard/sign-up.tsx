@@ -31,6 +31,7 @@ interface SignUpProps {
 export default function SignUp(props: SignUpProps) {
   const { setUser } = useUserStore();
   const [signupPassword, setSignupPassword] = useState("");
+  const [username, setUsername] = useState("");
   const [loading, setIsLoading] = useState(false);
   const { nextStep } = useStepper();
   const { toast } = useToast();
@@ -105,7 +106,7 @@ export default function SignUp(props: SignUpProps) {
 
   return (
     <>
-      <Card className="bg-background border-none">
+      <Card className="bg-background text-left border-none">
         <CardHeader>
           <CardTitle className="font-semibold">Sign Up</CardTitle>
           <CardDescription className="font-semibold">
@@ -138,7 +139,7 @@ export default function SignUp(props: SignUpProps) {
                 placeholder="Tell me your username (must be unique)"
                 defaultValue={props.email}
                 onChange={(e) => {
-                  props.setEmail(e.target.value);
+                  setUsername(e.target.value);
                 }}
               />
             </div>
@@ -160,7 +161,7 @@ export default function SignUp(props: SignUpProps) {
                 variant={"outline"}
                 className="p-6 text-white"
               >
-                <WalletMinimal size={24} />
+                <WalletMinimal className="h-6 w-6" />
               </Button>
             </div>
           </CardContent>
